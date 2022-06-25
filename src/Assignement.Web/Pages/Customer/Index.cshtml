@@ -1,0 +1,70 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Assignement.Permissions
+@using Assignement.Web.Pages.Customer
+@using Assignement.Web.Menus
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Assignement.Localization
+@inject IHtmlLocalizer<AssignementResource> L
+@inject IAuthorizationService Authorization
+@model IndexModel
+@inject IPageLayout PageLayout
+@{
+    PageLayout.Content.Title = L["Customers"].Value;
+ 
+}
+
+@section scripts
+{
+<abp-script src="/Pages/Customer/index.js" />
+}
+
+@section content_toolbar {
+   
+}
+
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["Customers"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-end">
+                @if (await Authorization.IsGrantedAsync(AssignementPermissions.Customers.Create))
+            {
+            <abp-button id="NewCustomerButton" text="@L["NewCustomer"].Value" icon="plus" button-type="Primary" />
+                }
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-row class="mb-3">
+            <abp-column size-md="_12">
+                <form id="SearchForm" autocomplete="off">
+                    <div class="input-group">
+                        <input class="form-control page-search-filter-text" id="FilterText" placeholder="@L["Search"]" />
+                        <abp-button button-type="Primary" type="submit" icon="search" />
+                    </div>
+                </form>
+            </abp-column>
+          
+        </abp-row>
+
+  
+
+        <abp-table  striped-rows="true" id="CustomersTable">
+            <thead>
+                <tr>
+
+                    
+                    <th>@L["Name"]</th>
+
+                    <th>@L["Location"]</th>
+                    <th>@L["Actions"]</th>
+                </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>

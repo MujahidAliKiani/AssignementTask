@@ -1,0 +1,24 @@
+﻿@page
+@using Assignement.Localization
+@using Assignement.Web.Pages.Order
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@model EditModalModel
+@inject IStringLocalizer<AssignementResource> L
+@{
+    Layout = null;
+}
+<form  asp-page="/Order/EditModal">
+    <abp-modal>
+        <abp-modal-header title="@L["Update"].Value"></abp-modal-header>
+        <abp-modal-body>
+             <abp-input asp-for="Id" />
+            <abp-input asp-for="Order.Name"/>
+            <abp-input  asp-for="Order.Date" type="date"/>
+            <abp-input asp-for="Order.Number"/>
+            <abp-select asp-for="Order.OrderType" asp-items="@Model.OrderTypes"/>
+            <abp-input  asp-for="CustomerId" />
+        </abp-modal-body>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+    </abp-modal>
+</form>

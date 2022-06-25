@@ -1,0 +1,23 @@
+﻿@page
+@using Assignement.Localization
+@using Assignement.Web.Pages.Customer
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@model CreateOrderModalModel
+@inject IStringLocalizer<AssignementResource> L
+@{
+    Layout = null;
+}
+<form  asp-page="/Customer/CreateOrderModal">
+    <abp-modal>
+        <abp-modal-header title="@L["NewOrder"].Value"></abp-modal-header>
+        <abp-modal-body>
+             <abp-input asp-for="Id" />
+            <abp-input asp-for="Order.Name"/>
+            <abp-input value="@DateTime.Now.ToString("dd/mm/yyyy")" asp-for="Order.Date" type="date"/>
+            <abp-input asp-for="Order.Number"/>
+            <abp-select asp-for="Order.OrderType" asp-items="@Model.OrderTypes"/>
+        </abp-modal-body>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+    </abp-modal>
+</form>

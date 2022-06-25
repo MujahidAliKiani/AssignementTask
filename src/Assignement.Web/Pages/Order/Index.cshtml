@@ -1,0 +1,71 @@
+﻿@page
+@using Microsoft.AspNetCore.Authorization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Assignement.Permissions
+@using Assignement.Web.Pages.Order
+@using Assignement.Web.Menus
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Assignement.Localization
+@inject IHtmlLocalizer<AssignementResource> L
+@inject IAuthorizationService Authorization
+@model IndexModel
+@inject IPageLayout PageLayout
+@{
+    PageLayout.Content.Title = L["Orders"].Value;
+    PageLayout.Content.MenuItemName = AssignementMenus.Order;
+}
+
+@section scripts
+{
+<abp-script src="/Pages/Order/index.js" />
+}
+
+@section content_toolbar {
+   
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["Orders"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-end">
+            
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-row class="mb-3">
+            <abp-column size-md="_12">
+                <form id="SearchForm" autocomplete="off">
+                    <div class="input-group">
+                        <input class="form-control page-search-filter-text" id="FilterText" placeholder="@L["Search"]" />
+                        <abp-button button-type="Primary" type="submit" icon="search" />
+                    </div>
+                </form>
+            </abp-column>
+          
+        </abp-row>
+
+  
+
+        <abp-table  striped-rows="true" id="OrdersTable">
+            <thead>
+                <tr>
+
+                    
+                    <th>@L["OrderNo"]</th>
+
+                    <th>@L["Name"]</th>
+                    <th>@L["Date"]</th>
+                    <th>@L["Customer"]</th>
+                    <th>@L["OrderType"]</th>
+                    <th>@L["Status"]</th>
+                    <th>@L["Actions"]</th>
+                </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>
+
