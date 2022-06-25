@@ -1,6 +1,8 @@
 # AssignementTask
 # Working Flow
-Change ConnectionString in appseeting.json
+After Downloading First open Cmd change path of cmd to ..../Assignment.web
+Run Command abp install-libs
+Than change ConnectionString in appsetting.json,
 run db Maigrator
 First Add Customer.
 Add Order Against Customer from Customer Page.
