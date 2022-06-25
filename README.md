@@ -1,5 +1,7 @@
 # AssignementTask
 # Working Flow
+Change ConnectionString in appseeting.json
+run db Maigrator
 First Add Customer.
 Add Order Against Customer from Customer Page.
 Order Is Confirm,Dispatch,Receive from Order Page.
